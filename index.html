@@ -8,146 +8,241 @@
   body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: linear-gradient(to right, #74ebd5, #acb6e5);
-    margin: 0; padding: 0;
+    margin: 0;
+    padding: 20px;
     color: #333;
   }
   h1 {
     text-align: center;
-    padding: 30px 0;
+    margin-bottom: 40px;
     color: #222;
   }
-  .container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 20px;
-    padding: 0 20px 40px;
-  }
-  .card {
+  .block {
+    display: flex;
+    flex-wrap: wrap;
     background: #fff;
-    border-radius: 10px;
+    border-radius: 12px;
     padding: 20px;
+    margin-bottom: 20px;
     box-shadow: 0 6px 12px rgba(0,0,0,0.15);
-    transition: transform 0.2s, box-shadow 0.2s;
+    align-items: center;
   }
-  .card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+  .example, .description {
+    flex: 1 1 300px;
+    padding: 10px 20px;
   }
-  h2 { margin-top: 0; color: #444; }
-  p { font-size: 14px; line-height: 1.5; }
-  input, select, button, textarea { margin: 5px 0; padding: 5px; width: 100%; border-radius: 5px; border: 1px solid #ccc; }
-  button { background: #6c63ff; color: #fff; border: none; cursor: pointer; transition: background 0.3s; }
-  button:hover { background: #5848c2; }
-  table { border-collapse: collapse; width: 100%; margin-top: 10px; }
-  th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
+  .description p {
+    margin: 0;
+    line-height: 1.5;
+    background: #f9f9f9;
+    padding: 10px;
+    border-radius: 8px;
+  }
+  input, select, button, textarea {
+    margin: 5px 0;
+    padding: 8px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  button {
+    background: #6c63ff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  button:hover {
+    background: #5848c2;
+  }
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 10px;
+  }
+  th, td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: left;
+  }
   th { background: #eee; }
-  .tabs { display: flex; cursor: pointer; margin-bottom: 5px; }
-  .tab { padding: 8px 12px; background: #ddd; margin-right: 2px; border-radius: 5px 5px 0 0; }
-  .tab.active { background: #fff; font-weight: bold; }
-  .tab-content { border: 1px solid #ddd; border-top: none; padding: 10px; background: #fff; border-radius: 0 0 8px 8px; }
-  .tooltip { position: relative; display: inline-block; cursor: pointer; color: #6c63ff; text-decoration: underline; }
-  .tooltip .tooltiptext { visibility: hidden; width: 160px; background-color: #333; color: #fff; text-align: center; border-radius: 5px; padding: 5px; position: absolute; z-index: 1; bottom: 125%; left: 50%; margin-left: -80px; opacity: 0; transition: opacity 0.3s; }
-  .tooltip:hover .tooltiptext { visibility: visible; opacity: 1; }
+  .tabs {
+    display: flex;
+    cursor: pointer;
+    margin-bottom: 5px;
+  }
+  .tab {
+    padding: 8px 12px;
+    background: #ddd;
+    margin-right: 2px;
+    border-radius: 5px 5px 0 0;
+  }
+  .tab.active {
+    background: #fff;
+    font-weight: bold;
+  }
+  .tab-content {
+    border: 1px solid #ddd;
+    border-top: none;
+    padding: 10px;
+    background: #fff;
+    border-radius: 0 0 8px 8px;
+  }
+  .tooltip {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    color: #6c63ff;
+    text-decoration: underline;
+  }
+  .tooltip .tooltiptext {
+    visibility: hidden;
+    width: 160px;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    border-radius: 5px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -80px;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+  }
 </style>
 </head>
 <body>
 
 <h1>UI Controls Showcase</h1>
-<div class="container">
 
 <!-- Radio Button -->
-<div class="card">
-  <h2>Radio Button</h2>
-  <p>A UI control that allows the user to select only one option from a predefined group of choices.</p>
-  <form>
-    <label><input type="radio" name="gender" value="male"> Male</label>
-    <label><input type="radio" name="gender" value="female"> Female</label>
-  </form>
+<div class="block">
+  <div class="example">
+    <form>
+      <label><input type="radio" name="gender" value="male"> Male</label>
+      <label><input type="radio" name="gender" value="female"> Female</label>
+    </form>
+  </div>
+  <div class="description">
+    <p>Radio Button: allows the user to select only one option from a predefined group of choices.</p>
+  </div>
 </div>
 
 <!-- Checkbox -->
-<div class="card">
-  <h2>Checkbox</h2>
-  <p>A UI control that allows the user to select one or multiple options independently from a set.</p>
-  <form>
-    <label><input type="checkbox" name="interest" value="music"> Music</label>
-    <label><input type="checkbox" name="interest" value="sports"> Sports</label>
-    <label><input type="checkbox" name="interest" value="movies"> Movies</label>
-  </form>
+<div class="block">
+  <div class="example">
+    <form>
+      <label><input type="checkbox" name="interest" value="music"> Music</label>
+      <label><input type="checkbox" name="interest" value="sports"> Sports</label>
+      <label><input type="checkbox" name="interest" value="movies"> Movies</label>
+    </form>
+  </div>
+  <div class="description">
+    <p>Checkbox: allows the user to select one or multiple options independently from a set.</p>
+  </div>
 </div>
 
 <!-- Text Input -->
-<div class="card">
-  <h2>Text Input</h2>
-  <p>A field that allows the user to enter and edit text data.</p>
-  <input type="text" placeholder="Enter your name">
-  <textarea placeholder="Enter multi-line text" rows="3"></textarea>
+<div class="block">
+  <div class="example">
+    <input type="text" placeholder="Enter your name">
+    <textarea placeholder="Enter multi-line text" rows="3"></textarea>
+  </div>
+  <div class="description">
+    <p>Text Input: a field that allows the user to enter and edit text data.</p>
+  </div>
 </div>
 
 <!-- Tabs -->
-<div class="card">
-  <h2>Tabs</h2>
-  <p>A navigation element that organizes content into separate sections, only one visible at a time.</p>
-  <div class="tabs">
-    <div class="tab active" onclick="showTab(0)">Tab 1</div>
-    <div class="tab" onclick="showTab(1)">Tab 2</div>
+<div class="block">
+  <div class="example">
+    <div class="tabs">
+      <div class="tab active" onclick="showTab(0)">Tab 1</div>
+      <div class="tab" onclick="showTab(1)">Tab 2</div>
+    </div>
+    <div class="tab-content" id="tabContent">Content of Tab 1</div>
   </div>
-  <div class="tab-content" id="tabContent">Content of Tab 1</div>
+  <div class="description">
+    <p>Tabs: organize content into separate sections, only one section visible at a time.</p>
+  </div>
 </div>
 
 <!-- Button -->
-<div class="card">
-  <h2>Button</h2>
-  <p>An interactive element that initiates an action or event when clicked.</p>
-  <button onclick="alert('Button clicked!')">Click Me</button>
+<div class="block">
+  <div class="example">
+    <button onclick="alert('Button clicked!')">Click Me</button>
+  </div>
+  <div class="description">
+    <p>Button: an interactive element that initiates an action or event when clicked.</p>
+  </div>
 </div>
 
 <!-- Text Label -->
-<div class="card">
-  <h2>Text Label</h2>
-  <p>A static text element used to identify, describe, or provide context for another UI component.</p>
-  <label for="email">Email address:</label>
-  <input type="email" id="email" placeholder="Enter email">
+<div class="block">
+  <div class="example">
+    <label for="email">Email address:</label>
+    <input type="email" id="email" placeholder="Enter email">
+  </div>
+  <div class="description">
+    <p>Text Label: a static text element used to identify, describe, or provide context for another UI component.</p>
+  </div>
 </div>
 
 <!-- Link -->
-<div class="card">
-  <h2>Link</h2>
-  <p>A navigational element that redirects the user to another page, section, or resource.</p>
-  <a href="https://example.com" target="_blank">Go to Example.com</a>
+<div class="block">
+  <div class="example">
+    <a href="https://example.com" target="_blank">Go to Example.com</a>
+  </div>
+  <div class="description">
+    <p>Link: a navigational element that redirects the user to another page, section, or resource.</p>
+  </div>
 </div>
 
 <!-- Tooltip -->
-<div class="card">
-  <h2>Tooltip</h2>
-  <p>A small informational popup that appears when the user hovers over or focuses on a UI element.</p>
-  <div class="tooltip">Hover over me
-    <span class="tooltiptext">Tooltip information</span>
+<div class="block">
+  <div class="example">
+    <div class="tooltip">Hover over me
+      <span class="tooltiptext">Tooltip information</span>
+    </div>
+  </div>
+  <div class="description">
+    <p>Tooltip: a small informational popup that appears when the user hovers over or focuses on a UI element.</p>
   </div>
 </div>
 
 <!-- Dropdown List -->
-<div class="card">
-  <h2>Dropdown List</h2>
-  <p>A UI control that displays a list of selectable options when expanded.</p>
-  <select>
-    <option value="usa">USA</option>
-    <option value="uk">UK</option>
-    <option value="germany">Germany</option>
-  </select>
+<div class="block">
+  <div class="example">
+    <select>
+      <option value="usa">USA</option>
+      <option value="uk">UK</option>
+      <option value="germany">Germany</option>
+    </select>
+  </div>
+  <div class="description">
+    <p>Dropdown List: displays a list of selectable options when expanded.</p>
+  </div>
 </div>
 
 <!-- Data Grid -->
-<div class="card">
-  <h2>Data Grid (Table)</h2>
-  <p>A structured component that displays data in rows and columns.</p>
-  <table>
-    <tr><th>Name</th><th>Age</th><th>Country</th></tr>
-    <tr><td>John</td><td>25</td><td>USA</td></tr>
-    <tr><td>Mary</td><td>30</td><td>UK</td></tr>
-  </table>
-</div>
-
+<div class="block">
+  <div class="example">
+    <table>
+      <tr><th>Name</th><th>Age</th><th>Country</th></tr>
+      <tr><td>John</td><td>25</td><td>USA</td></tr>
+      <tr><td>Mary</td><td>30</td><td>UK</td></tr>
+    </table>
+  </div>
+  <div class="description">
+    <p>Data Grid (Table): displays data in rows and columns, often supporting sorting and filtering.</p>
+  </div>
 </div>
 
 <script>
