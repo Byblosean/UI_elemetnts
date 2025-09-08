@@ -1,129 +1,120 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>UI Controls Showcase</title>
 <style>
-  body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(to right, #74ebd5, #acb6e5);
-    margin: 0;
-    padding: 20px;
-    color: #333;
+  :root{
+    --violet:#6c63ff;
+    --violet-600:#5848c2;
+    --violet-200:#c6c2ff;
+    --ink:#22223b;
+    --paper:#ffffff;
+    --soft:#f6f5ff;
+    --border: rgba(108,99,255,.35);
   }
-  h1 {
-    text-align: center;
-    margin-bottom: 40px;
-    color: #222;
+
+  body{
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #7f7cff 0%, #b8a6ff 35%, #e3d9ff 100%);
+    margin:0; padding:24px; color:#2a2a2a;
   }
-  .container {
-    max-width: 1000px;
-    margin: 0 auto;
+
+  h1{
+    text-align:center; margin:0 0 32px; color:#201b69;
+    text-shadow:0 1px 0 #fff, 0 0 20px rgba(108,99,255,.25);
   }
-  .block {
-    display: flex;
-    flex-wrap: wrap;
-    background: #fff;
-    border-radius: 12px;
-    padding: 20px;
-    margin-bottom: 20px;
-    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
-    align-items: center;
+
+  .container{ max-width:1000px; margin:0 auto; }
+
+  /* cards */
+  .block{
+    display:flex; flex-wrap:wrap; align-items:center;
+    background: var(--paper);
+    border-radius:14px; padding:20px; margin-bottom:20px;
+    box-shadow: 0 10px 24px rgba(36, 28, 127, .12);
+    border:1px solid var(--border);
   }
-  .example, .description {
-    flex: 1 1 300px;
-    padding: 10px 20px;
+  .example,.description{ flex:1 1 320px; padding:10px 16px; }
+  .description{ display:flex; align-items:center; }
+  .description p{
+    margin:0; line-height:1.5; background:var(--soft);
+    padding:14px; border-radius:10px; border:1px solid var(--border);
   }
-  .description {
-    display: flex;
-    align-items: center;
+
+  /* inputs */
+  input, select, button, textarea{
+    margin:6px 0; padding:10px 12px; border-radius:8px;
+    border:1px solid #d9d7ff; width:100%; box-sizing:border-box;
+    outline:none;
   }
-  .description p {
-    margin: 0;
-    line-height: 1.5;
-    background: #f1f1f1;
-    padding: 15px;
-    border-radius: 8px;
+  input:focus, select:focus, textarea:focus{
+    border-color: var(--violet); box-shadow:0 0 0 3px rgba(108,99,255,.18);
   }
-  input, select, button, textarea {
-    margin: 5px 0;
-    padding: 8px;
-    border-radius: 6px;
-    border: 1px solid #ccc;
-    width: 100%;
-    box-sizing: border-box;
+
+  /* button (фиолетовый стиль) */
+  button{
+    background: var(--violet); color:#fff; border:none; cursor:pointer;
+    transition: transform .05s ease, box-shadow .2s ease, background .2s ease;
+    box-shadow: 0 6px 12px rgba(108,99,255,.35);
   }
-  button {
-    background: #6c63ff;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-    transition: 0.3s;
+  button:hover{ background:var(--violet-600); box-shadow:0 10px 20px rgba(108,99,255,.45); }
+  button:active{ transform: translateY(1px) scale(.99); }
+
+  /* table */
+  table{ border-collapse:collapse; width:100%; margin-top:10px; }
+  th,td{ border:1px solid #e8e6ff; padding:10px; text-align:left; }
+  th{ background:#f1efff; color:#2b2467; }
+
+  /* ✅ FIX 1: выравнивание радио/чекбоксов с текстом */
+  .choices label{
+    display:inline-flex; align-items:center; gap:10px;
+    margin-right:16px; user-select:none; cursor:pointer;
   }
-  button:hover {
-    background: #5848c2;
+  input[type="radio"], input[type="checkbox"]{
+    width:auto; height:auto; margin:0;                 /* убрали странные отступы */
+    vertical-align: middle;                            /* подстраховка для старых браузеров */
+    accent-color: var(--violet);                       /* нативный фиолетовый чек/радио */
   }
-  table {
-    border-collapse: collapse;
-    width: 100%;
-    margin-top: 10px;
+
+  /* ✅ FIX 2: контрастные вкладки */
+  .tabs{
+    display:flex; gap:6px; margin-bottom:8px; align-items:flex-end;
   }
-  th, td {
-    border: 1px solid #ccc;
-    padding: 8px;
-    text-align: left;
+  .tab{
+    padding:10px 14px; border-radius:10px 10px 0 0;
+    background: rgba(108,99,255,.15);
+    color:#2b2467; border:1px solid var(--border);
+    border-bottom:none; cursor:pointer; user-select:none;
+    transition: background .2s ease, box-shadow .2s ease;
+    backdrop-filter: blur(4px);
   }
-  th { background: #eee; }
-  .tabs {
-    display: flex;
-    cursor: pointer;
-    margin-bottom: 5px;
+  .tab:hover{ background: rgba(108,99,255,.22); }
+  .tab.active{
+    background: #fff; color:#1f1a63;
+    box-shadow: 0 -2px 16px rgba(108,99,255,.15);
+    position:relative; z-index:1;
   }
-  .tab {
-    padding: 8px 12px;
-    background: #ddd;
-    margin-right: 2px;
-    border-radius: 5px 5px 0 0;
+  .tab-content{
+    border:1px solid var(--border);
+    border-radius: 0 12px 12px 12px;
+    padding:14px; background:#fff; color:#2a2a2a;
   }
-  .tab.active {
-    background: #fff;
-    font-weight: bold;
+
+  /* links + tooltip */
+  a{ color:var(--violet); font-weight:600; text-decoration:none; }
+  a:hover{ text-decoration:underline; }
+  .tooltip{ position:relative; display:inline-block; color:var(--violet); cursor:pointer; }
+  .tooltip .tooltiptext{
+    visibility:hidden; opacity:0; width:180px;
+    background:#2b2467; color:#fff; text-align:center;
+    border-radius:8px; padding:8px; position:absolute; z-index:2;
+    bottom:125%; left:50%; transform: translateX(-50%);
+    transition: opacity .2s ease;
+    box-shadow:0 8px 18px rgba(43,36,103,.35);
   }
-  .tab-content {
-    border: 1px solid #ddd;
-    border-top: none;
-    padding: 10px;
-    background: #fff;
-    border-radius: 0 0 8px 8px;
-  }
-  .tooltip {
-    position: relative;
-    display: inline-block;
-    cursor: pointer;
-    color: #6c63ff;
-    text-decoration: underline;
-  }
-  .tooltip .tooltiptext {
-    visibility: hidden;
-    width: 160px;
-    background-color: #333;
-    color: #fff;
-    text-align: center;
-    border-radius: 5px;
-    padding: 5px;
-    position: absolute;
-    z-index: 1;
-    bottom: 125%;
-    left: 50%;
-    margin-left: -80px;
-    opacity: 0;
-    transition: opacity 0.3s;
-  }
-  .tooltip:hover .tooltiptext {
-    visibility: visible;
-    opacity: 1;
-  }
+  .tooltip:hover .tooltiptext{ visibility:visible; opacity:1; }
 </style>
 </head>
 <body>
@@ -131,136 +122,136 @@
 <h1>UI Controls Showcase</h1>
 <div class="container">
 
-<!-- Radio Button -->
-<div class="block">
-  <div class="example">
-    <form>
-      <label><input type="radio" name="gender" value="male"> Male</label>
-      <label><input type="radio" name="gender" value="female"> Female</label>
-    </form>
-  </div>
-  <div class="description">
-    <p>Radio Button: allows the user to select only one option from a predefined group of choices.</p>
-  </div>
-</div>
-
-<!-- Checkbox -->
-<div class="block">
-  <div class="example">
-    <form>
-      <label><input type="checkbox" name="interest" value="music"> Music</label>
-      <label><input type="checkbox" name="interest" value="sports"> Sports</label>
-      <label><input type="checkbox" name="interest" value="movies"> Movies</label>
-    </form>
-  </div>
-  <div class="description">
-    <p>Checkbox: allows the user to select one or multiple options independently from a set.</p>
-  </div>
-</div>
-
-<!-- Text Input -->
-<div class="block">
-  <div class="example">
-    <input type="text" placeholder="Enter your name">
-    <textarea placeholder="Enter multi-line text" rows="3"></textarea>
-  </div>
-  <div class="description">
-    <p>Text Input: a field that allows the user to enter and edit text data.</p>
-  </div>
-</div>
-
-<!-- Tabs -->
-<div class="block">
-  <div class="example">
-    <div class="tabs">
-      <div class="tab active" onclick="showTab(0)">Tab 1</div>
-      <div class="tab" onclick="showTab(1)">Tab 2</div>
+  <!-- Radio Button -->
+  <div class="block">
+    <div class="example">
+      <form class="choices">
+        <label><input type="radio" name="gender" value="male">Male</label>
+        <label><input type="radio" name="gender" value="female">Female</label>
+      </form>
     </div>
-    <div class="tab-content" id="tabContent">Content of Tab 1</div>
-  </div>
-  <div class="description">
-    <p>Tabs: organize content into separate sections, only one section visible at a time.</p>
-  </div>
-</div>
-
-<!-- Button -->
-<div class="block">
-  <div class="example">
-    <button onclick="alert('Button clicked!')">Click Me</button>
-  </div>
-  <div class="description">
-    <p>Button: an interactive element that initiates an action or event when clicked.</p>
-  </div>
-</div>
-
-<!-- Text Label -->
-<div class="block">
-  <div class="example">
-    <label for="email">Email address:</label>
-    <input type="email" id="email" placeholder="Enter email">
-  </div>
-  <div class="description">
-    <p>Text Label: a static text element used to identify, describe, or provide context for another UI component.</p>
-  </div>
-</div>
-
-<!-- Link -->
-<div class="block">
-  <div class="example">
-    <a href="https://example.com" target="_blank">Go to Example.com</a>
-  </div>
-  <div class="description">
-    <p>Link: a navigational element that redirects the user to another page, section, or resource.</p>
-  </div>
-</div>
-
-<!-- Tooltip -->
-<div class="block">
-  <div class="example">
-    <div class="tooltip">Hover over me
-      <span class="tooltiptext">Tooltip information</span>
+    <div class="description">
+      <p>Radio Button: allows the user to select only one option from a predefined group of choices.</p>
     </div>
   </div>
-  <div class="description">
-    <p>Tooltip: a small informational popup that appears when the user hovers over or focuses on a UI element.</p>
-  </div>
-</div>
 
-<!-- Dropdown List -->
-<div class="block">
-  <div class="example">
-    <select>
-      <option value="usa">USA</option>
-      <option value="uk">UK</option>
-      <option value="germany">Germany</option>
-    </select>
+  <!-- Checkbox -->
+  <div class="block">
+    <div class="example">
+      <form class="choices">
+        <label><input type="checkbox" name="interest" value="music">Music</label>
+        <label><input type="checkbox" name="interest" value="sports">Sports</label>
+        <label><input type="checkbox" name="interest" value="movies">Movies</label>
+      </form>
+    </div>
+    <div class="description">
+      <p>Checkbox: allows the user to select one or multiple options independently from a set.</p>
+    </div>
   </div>
-  <div class="description">
-    <p>Dropdown List: displays a list of selectable options when expanded.</p>
-  </div>
-</div>
 
-<!-- Data Grid -->
-<div class="block">
-  <div class="example">
-    <table>
-      <tr><th>Name</th><th>Age</th><th>Country</th></tr>
-      <tr><td>John</td><td>25</td><td>USA</td></tr>
-      <tr><td>Mary</td><td>30</td><td>UK</td></tr>
-    </table>
+  <!-- Text Input -->
+  <div class="block">
+    <div class="example">
+      <input type="text" placeholder="Enter your name" />
+      <textarea placeholder="Enter multi-line text" rows="3"></textarea>
+    </div>
+    <div class="description">
+      <p>Text Input: a field that allows the user to enter and edit text data.</p>
+    </div>
   </div>
-  <div class="description">
-    <p>Data Grid (Table): displays data in rows and columns, often supporting sorting and filtering.</p>
+
+  <!-- Tabs -->
+  <div class="block">
+    <div class="example">
+      <div class="tabs">
+        <div class="tab active" onclick="showTab(0)">Tab 1</div>
+        <div class="tab" onclick="showTab(1)">Tab 2</div>
+      </div>
+      <div class="tab-content" id="tabContent">Content of Tab 1</div>
+    </div>
+    <div class="description">
+      <p>Tabs: organize content into separate sections, only one section visible at a time.</p>
+    </div>
   </div>
-</div>
+
+  <!-- Button -->
+  <div class="block">
+    <div class="example">
+      <button onclick="alert('Button clicked!')">Click Me</button>
+    </div>
+    <div class="description">
+      <p>Button: an interactive element that initiates an action or event when clicked.</p>
+    </div>
+  </div>
+
+  <!-- Label -->
+  <div class="block">
+    <div class="example">
+      <label for="email">Email address:</label>
+      <input type="email" id="email" placeholder="Enter email" />
+    </div>
+    <div class="description">
+      <p>Text Label: a static text element used to identify or describe another UI component.</p>
+    </div>
+  </div>
+
+  <!-- Link -->
+  <div class="block">
+    <div class="example">
+      <a href="https://example.com" target="_blank">Go to Example.com</a>
+    </div>
+    <div class="description">
+      <p>Link: a navigational element that redirects the user to another page, section, or resource.</p>
+    </div>
+  </div>
+
+  <!-- Tooltip -->
+  <div class="block">
+    <div class="example">
+      <div class="tooltip">Hover over me
+        <span class="tooltiptext">Tooltip information</span>
+      </div>
+    </div>
+    <div class="description">
+      <p>Tooltip: a small informational popup that appears when the user hovers over an element.</p>
+    </div>
+  </div>
+
+  <!-- Dropdown -->
+  <div class="block">
+    <div class="example">
+      <select>
+        <option value="usa">USA</option>
+        <option value="uk">UK</option>
+        <option value="germany">Germany</option>
+      </select>
+    </div>
+    <div class="description">
+      <p>Dropdown List: displays a list of selectable options when expanded.</p>
+    </div>
+  </div>
+
+  <!-- Data Grid -->
+  <div class="block">
+    <div class="example">
+      <table>
+        <tr><th>Name</th><th>Age</th><th>Country</th></tr>
+        <tr><td>John</td><td>25</td><td>USA</td></tr>
+        <tr><td>Mary</td><td>30</td><td>UK</td></tr>
+      </table>
+    </div>
+    <div class="description">
+      <p>Data Grid (Table): displays data in rows and columns, often supporting sorting and filtering.</p>
+    </div>
+  </div>
 
 </div>
 
 <script>
-function showTab(index){
-  document.querySelectorAll('.tab').forEach((t,i)=> t.classList.toggle('active', i===index));
-  document.getElementById('tabContent').innerText = index===0 ? 'Content of Tab 1' : 'Content of Tab 2';
-}
+  function showTab(index){
+    document.querySelectorAll('.tab').forEach((t,i)=> t.classList.toggle('active', i===index));
+    document.getElementById('tabContent').innerText = index===0 ? 'Content of Tab 1' : 'Content of Tab 2';
+  }
 </script>
 
 </body>
