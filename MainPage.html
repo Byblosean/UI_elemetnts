@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UI Controls Examples</title>
+<style>
+  body { font-family: Arial, sans-serif; margin: 20px; background: #f4f4f9; }
+  h1 { text-align: center; color: #333; }
+  section { background: #fff; padding: 15px 20px; margin: 15px 0; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.1); }
+  h2 { color: #555; margin-bottom: 5px; }
+  p { margin-bottom: 10px; }
+  label { display: block; margin: 5px 0; }
+  input, select, button { margin: 5px 0; padding: 5px; }
+  table { border-collapse: collapse; width: 100%; margin-top: 10px; }
+  th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
+  th { background: #eee; }
+  .tabs { display: flex; margin-bottom: 5px; cursor: pointer; }
+  .tab { padding: 8px 12px; background: #ddd; margin-right: 2px; border-radius: 5px 5px 0 0; }
+  .tab.active { background: #fff; font-weight: bold; }
+  .tab-content { border: 1px solid #ddd; border-top: none; padding: 10px; background: #fff; }
+  .tooltip { position: relative; display: inline-block; border-bottom: 1px dotted black; cursor: pointer; }
+  .tooltip .tooltiptext { visibility: hidden; width: 160px; background-color: #333; color: #fff; text-align: center; border-radius: 5px; padding: 5px; position: absolute; z-index: 1; bottom: 125%; left: 50%; margin-left: -80px; opacity: 0; transition: opacity 0.3s; }
+  .tooltip:hover .tooltiptext { visibility: visible; opacity: 1; }
+</style>
+</head>
+<body>
+
+<h1>UI Controls Examples</h1>
+
+<section>
+<h2>1. Radio button</h2>
+<p>A UI control that allows the user to select only one option from a predefined group of choices.</p>
+<form>
+  <label><input type="radio" name="gender" value="male"> Male</label>
+  <label><input type="radio" name="gender" value="female"> Female</label>
+</form>
+</section>
+
+<section>
+<h2>2. Checkbox</h2>
+<p>A UI control that allows the user to select one or multiple options independently from a set.</p>
+<form>
+  <label><input type="checkbox" name="interest" value="music"> Music</label>
+  <label><input type="checkbox" name="interest" value="sports"> Sports</label>
+  <label><input type="checkbox" name="interest" value="movies"> Movies</label>
+</form>
+</section>
+
+<section>
+<h2>3. Text input</h2>
+<p>A field that allows the user to enter and edit text data.</p>
+<input type="text" placeholder="Enter your name">
+<br>
+<textarea placeholder="Enter multi-line text" rows="3" cols="30"></textarea>
+</section>
+
+<section>
+<h2>4. Tabs</h2>
+<p>A navigation element that organizes content into separate sections, only one visible at a time.</p>
+<div class="tabs">
+  <div class="tab active" onclick="showTab(0)">Tab 1</div>
+  <div class="tab" onclick="showTab(1)">Tab 2</div>
+</div>
+<div class="tab-content" id="tabContent">Content of Tab 1</div>
+<script>
+  function showTab(index){
+    document.querySelectorAll('.tab').forEach((t,i)=> t.classList.toggle('active', i===index));
+    document.getElementById('tabContent').innerText = index===0 ? 'Content of Tab 1' : 'Content of Tab 2';
+  }
+</script>
+</section>
+
+<section>
+<h2>5. Button</h2>
+<p>An interactive element that initiates an action or event when clicked.</p>
+<button onclick="alert('Button clicked!')">Click me</button>
+</section>
+
+<section>
+<h2>6. Text label</h2>
+<p>A static text element used to identify, describe, or provide context for another UI component.</p>
+<label for="email">Email address:</label>
+<input type="email" id="email" placeholder="Enter email">
+</section>
+
+<section>
+<h2>7. Link</h2>
+<p>A navigational element that redirects the user to another page, section, or resource.</p>
+<a href="https://example.com" target="_blank">Go to Example.com</a>
+</section>
+
+<section>
+<h2>8. Tooltip</h2>
+<p>A small informational popup that appears when the user hovers over or focuses on a UI element.</p>
+<div class="tooltip">Hover over me
+  <span class="tooltiptext">Tooltip information</span>
+</div>
+</section>
+
+<section>
+<h2>9. Dropdown list</h2>
+<p>A UI control that displays a list of selectable options when expanded.</p>
+<select>
+  <option value="usa">USA</option>
+  <option value="uk">UK</option>
+  <option value="germany">Germany</option>
+</select>
+</section>
+
+<section>
+<h2>10. Data grid (table)</h2>
+<p>A structured component that displays data in rows and columns.</p>
+<table>
+  <tr><th>Name</th><th>Age</th><th>Country</th></tr>
+  <tr><td>John</td><td>25</td><td>USA</td></tr>
+  <tr><td>Mary</td><td>30</td><td>UK</td></tr>
+</table>
+</section>
+
+</body>
+</html>
